@@ -1440,16 +1440,16 @@ m2_spline <- svyglm(
   design = design_1116
 )
 
-extract_spline_test <- function(spline_model) {
+extract_spline_test <- function(linear_model, spline_model) {
   
   overall_test <- regTermTest(
     spline_model,
     ~ ns(vk_density, df = 3)
   )
   
-  nonlinear_test <- regTermTest(
-    spline_model,
-    ~ ns(vk_density, df = 3) - vk_density
+  nonlinear_test <- anova(
+    linear_model,
+    spline_model
   )
   
   tibble(
@@ -1459,7 +1459,10 @@ extract_spline_test <- function(spline_model) {
   )
 }
 
-spline_results_table <- extract_spline_test(m2_spline)
+spline_results_table <- extract_spline_test(
+  m2_linear_raw,
+  m2_spline
+)
 
 write.xlsx(
   spline_results_table,
