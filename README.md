@@ -36,6 +36,9 @@ Analyses included:
 ├── results/
 │   └── sessionInfo.txt
 │
+├── figures/
+│   └── Spline_VitaminK_Testosterone.png
+│
 └── data_raw/                # User-supplied NHANES data files
 ```
 
